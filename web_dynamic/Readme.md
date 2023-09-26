@@ -10,7 +10,7 @@ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost H
 HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_dynamic.1-hbnb
 ```
 
-open in ther tab:
+open in other tab:
 ```
 curl -s -XGET http://0.0.0.0:5000/0-hbnb/ | head -6
 curl -s -XGET http://0.0.0.0:5000/1-hbnb/ | head -6
