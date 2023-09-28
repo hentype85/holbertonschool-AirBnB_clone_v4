@@ -8,6 +8,25 @@ $(document).ready(function () {
         h4.text("Selected Amenities: " + arrCheck.join(", "));
     }
 
+    // listen for changes in checkbox
+    $(":checkbox").change(function () {
+  
+        let amenityId = this.id;
+  
+        if (this.checked) {
+            // if is checked, add Id
+            arrCheck.push(amenityId);
+        } else {
+            // if is unchecked, quit the Id
+            let index = arrCheck.indexOf(amenityId);
+            if (index !== -1) {
+                arrCheck.splice(index, 1);
+            }
+        }
+        // update checkbox
+        updateCheckBox();
+    });
+
     // function to check API status and update div#api_status
     function checkAPIStatus() {
         $.ajax({
@@ -27,23 +46,4 @@ $(document).ready(function () {
     }
     // initial check of API status
     checkAPIStatus();
-  
-    // listen for changes in checkbox
-    $(":checkbox").change(function () {
-  
-        let amenityId = this.id;
-  
-        if (this.checked) {
-            // if is checked, add Id
-            arrCheck.push(amenityId);
-        } else {
-            // if is unchecked, quit the Id
-            let index = arrCheck.indexOf(amenityId);
-            if (index !== -1) {
-                arrCheck.splice(index, 1);
-            }
-        }
-        // update checkbox
-        updateCheckBox();
-    });
 });
