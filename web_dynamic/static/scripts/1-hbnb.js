@@ -2,13 +2,13 @@ $(document).ready(function () {
 
   const arrCheck = [];
 
-  /*update checkbox*/
+  // update checkbox
   function updateCheckBox() {
     let h4 = $(".Amenities h4");
     h4.text("Selected Amenities: " + arrCheck.join(", "));
   }
 
-  /*listen changes in checkbox*/
+  // listen changes in checkbox
   $(":checkbox").change(function () {
 
     let amenityId = this.id;
