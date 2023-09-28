@@ -9,6 +9,7 @@ from models.place import Place
 from os import environ
 from flask import Flask, render_template
 import uuid
+import requests
 
 
 app = Flask(__name__)
@@ -43,7 +44,6 @@ def hbnb():
                            amenities=amenities,
                            places=places,
                            cache_id=cache_id)
-
 
 if __name__ == "__main__":
     """ Main Function """
