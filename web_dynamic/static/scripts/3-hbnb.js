@@ -42,7 +42,7 @@ function searchPlaces () {
     data: '{}',
     success: function (data) {
       $.each(data, (i, place) => {
-        $('SECTION.places').append(`
+        $('section.places').append(`
         <article>
           <div class="title_box">
               <h2>${place.name}</h2>
