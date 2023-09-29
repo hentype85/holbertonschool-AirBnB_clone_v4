@@ -1,27 +1,24 @@
-$(document).ready(function () {
+// function for listen for changes in checkbox
+function updateCheckBox () {
   const arrCheck = [];
-
-  // update checkbox
-  function updateCheckBox () {
-    const h4 = $('.Amenities h4');
-    h4.text('Selected Amenities: ' + arrCheck.join(', '));
-  }
-
-  // listen changes in checkbox
   $(':checkbox').change(function () {
-    const amenityId = this.id;
+    const checkboxId = this.id;
 
     if (this.checked) {
-      // if is checked, add Id
-      arrCheck.push(amenityId);
+      // add ID
+      arrCheck.push(checkboxId);
     } else {
-      // if is unchecked, quit the Id
-      const index = arrCheck.indexOf(amenityId);
-      if (index !== -1) {
-        arrCheck.splice(index, 1);
+      // remove ID
+      const i = arrCheck.indexOf(checkboxId);
+      if (i !== -1) {
+        arrCheck.splice(i, 1);
       }
     }
-    // update checkbox
-    updateCheckBox();
+
+    console.log(arrCheck);
   });
+}
+
+$(document).ready(function () {
+  updateCheckBox();
 });
