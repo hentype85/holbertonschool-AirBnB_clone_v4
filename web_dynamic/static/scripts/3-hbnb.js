@@ -20,7 +20,7 @@ function updateCheckBox () {
 // function to check API status and update div#api_status
 function checkAPIStatus () {
   $.ajax({
-    url: 'http://0.0.0.0:5001/api/v1/status/',
+    url: 'http://localhost:5001/api/v1/status/',
     type: 'GET',
     success: function (data) {
       if (data.status === 'OK') {
