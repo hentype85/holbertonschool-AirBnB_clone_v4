@@ -1,30 +1,31 @@
 // function for listen for changes in checkbox
-const arrChecked = [];
+const arrCheckedByID = [];
 
-function updateCheckBox() {
+function updateCheckBox () {
   const checkboxes = $('.amenities input[type="checkbox"]');
 
-  checkboxes.on('click', function() {
+  checkboxes.on('click', function () {
     const isChecked = $(this).prop('checked');
     const amenityId = $(this).data('id');
 
     if (isChecked) {
-      arrChecked.push(amenityId);
+      // push checked amenityId
+      arrCheckedByID.push(amenityId);
     } else {
       // find the index of amenityId in the array y delete
-      const index = arrChecked.indexOf(amenityId);
+      const index = arrCheckedByID.indexOf(amenityId);
       if (index !== -1) {
-        arrChecked.splice(index, 1);
+        arrCheckedByID.splice(index, 1);
       }
     }
 
-    // show checkbox actions in log
-    console.log(arrChecked);
+    // show log
+    console.log(arrCheckedByID);
   });
 }
 
 // function to check API status and update div#api_status
-function checkAPIStatus() {
+function checkAPIStatus () {
   $.ajax({
     url: 'http://localhost:5001/api/v1/status/',
     type: 'GET',
@@ -39,20 +40,18 @@ function checkAPIStatus() {
 }
 
 // function to make a POST request to places_search endpoint
-function searchPlaces() {
-
+function searchPlaces () {
   $.ajax({
     url: 'http://localhost:5001/api/v1/places_search/',
     type: 'POST',
     dataType: 'json',
     contentType: 'application/json',
-    data: JSON.stringify({ amenities: arrChecked }),
+    data: JSON.stringify({ amenities: arrCheckedByID }),
     success: function (data) {
-
       $('section.places').empty();
 
       $.each(data, (i, place) => {
-          $('section.places').append(`
+        $('section.places').append(`
             <article>
               <div class="title_box">
                 <h2>${place.name}</h2>
@@ -74,7 +73,7 @@ function searchPlaces() {
   });
 }
 
-
+// document loaded
 $(document).ready(function () {
   updateCheckBox();
   checkAPIStatus();
@@ -84,5 +83,4 @@ $(document).ready(function () {
   btn.on('click', () => {
     searchPlaces();
   });
-
 });
