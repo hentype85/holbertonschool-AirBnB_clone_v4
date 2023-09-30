@@ -26,3 +26,7 @@ header .logo {
 #api_status.available {
     background-color: #ff545f;
 }
+
+button {
+    cursor: pointer;
+}
