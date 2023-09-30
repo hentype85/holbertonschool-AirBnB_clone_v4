@@ -1,21 +1,40 @@
 // function for listen for changes in checkbox
-function updateCheckBox () {
-  const arrCheck = [];
-  $(':checkbox').change(function () {
-    const checkboxId = this.id;
+const arrCheckedByID = [];
+const arrCheckedByName = [];
 
-    if (this.checked) {
-      // add ID
-      arrCheck.push(checkboxId);
+function updateCheckBox () {
+  const checkboxes = $('.amenities input[type="checkbox"]');
+
+  checkboxes.on('click', function () {
+    const isChecked = $(this).prop('checked');
+    const amenityId = $(this).data('id');
+    const amenityName = $(this).data('name');
+
+    if (isChecked) {
+      // push checked amenityId
+      arrCheckedByID.push(amenityId, amenityName);
+      arrCheckedByName.push(amenityName);
     } else {
-      // remove ID
-      const i = arrCheck.indexOf(checkboxId);
-      if (i !== -1) {
-        arrCheck.splice(i, 1);
+      // find the index of amenityId in the array y delete
+      const index = arrCheckedByID.indexOf(amenityId);
+      if (index !== -1) {
+        arrCheckedByID.splice(index, 1);
+        arrCheckedByName.splice(index, 1);
+      }
+      // find the name of amenityId in the array y delete
+      const name = arrCheckedByID.indexOf(amenityName);
+      if (name !== -1) {
+        arrCheckedByID.splice(name, 1);
+        arrCheckedByName.splice(index, 1);
       }
     }
 
-    console.log(arrCheck);
+    // show log
+    console.log(arrCheckedByID);
+
+    // show list of names in h4
+    $('.amenities h4').text(arrCheckedByName.join(', '));
+  
   });
 }
 
